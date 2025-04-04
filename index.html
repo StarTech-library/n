@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="https://pb.nichi.co/plunge-setup-slot" as="image">
+    <link rel="preload" href="https://pb.nichi.co/pen-market-sausage" as="image">
+    <meta name="description" content="奈境星辰 - 探索数字未来的创新实践者，打造独特数字体验">
+    <meta name="keywords" content="数字创新,创意解决方案,交互体验,未来科技">
+    <title>奈境星辰 | 数字未来探索者</title>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "奈境星辰",
+        "url": "https://www.startech7.top",
+        "logo": "https://pb.nichi.co/plunge-setup-slot",
+        "description": "数字创新领域的先锋实践者",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "ceo@startech7.top",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container, .qrcode-container {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, #f1f3f4 0%, #e8eaed 100%);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .logo.loaded, .qrcode-img.loaded {
+            opacity: 1;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .btn {
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0.2) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255,255,255,0.2) 50%,
+                rgba(255,255,255,0.2) 75%,
+                transparent 75%);
+            background-size: 60px 60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+            animation: shine 1.5s infinite;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .wechat-btn {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .qrcode-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            opacity: 0;
+        }
+
+        .loading-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background: rgba(255,255,255,0.95);
+            border-top: 1px solid #eee;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.9rem;
+        }
+
+        @keyframes shine {
+            0% { background-position: -100px 0; }
+            100% { background-position: 100px 0; }
+        }
+
+        @media (max-width: 768px) {
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img 
+                    src="https://pb.nichi.co/plunge-setup-slot" 
+                    alt="奈境星辰品牌标志" 
+                    class="logo"
+                    onload="this.classList.add('loaded'); this.parentNode.querySelector('.loading-text').style.display='none'"
+                    onerror="this.style.display='none'; this.parentNode.querySelector('.loading-text').textContent='图片加载失败'">
+                <div class="loading-text">加载中...</div>
+            </div>
+            <h1>奈境星辰</h1>
+            <p>探索数字世界的无限可能</p>
+        </header>
+
+        <div class="button-group">
+            <a href="https://www.startech7.top" class="btn primary-btn">访问原官网</a>
+            <a href="https://work.weixin.qq.com/kfid/kfc106a20ec7f3c1ba8" class="btn wechat-btn">微信客服</a>
+        </div>
+
+        <div style="text-align: center; margin: 3rem 0">
+            <div class="qrcode-container">
+                <img 
+                    src="https://pb.nichi.co/pen-market-sausage" 
+                    alt="奈境星辰官方公众号" 
+                    class="qrcode-img"
+                    onload="this.classList.add('loaded'); this.parentNode.querySelector('.loading-text').style.display='none'"
+                    onerror="this.style.display='none'; this.parentNode.querySelector('.loading-text').textContent='图片加载失败'">
+                <div class="loading-text">加载中...</div>
+            </div>
+            <p style="margin-top: 1rem;">获取最新资讯</p>
+        </div>
+
+        <div id="termsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h2>服务协议</h2>
+                <div style="max-height: 60vh; overflow-y: auto; padding-right: 1rem;">
+                    <p><strong>更新日期：2025年3月</strong></p>
+                    <h3>1. 服务范围</h3>
+                    <p>我们提供数字创新领域的专业服务，具体内容以双方签订的实际协议为准。</p>
+                    
+                    <h3>2. 知识产权</h3>
+                    <p>所有交付成果的知识产权归奈境星辰所有，客户获得指定范围的使用授权。</p>
+                    
+                    <h3>3. 保密条款</h3>
+                    <p>双方应对合作过程中获悉的商业秘密和技术信息承担永久保密义务。</p>
+                    
+                    <h3>4. 责任声明</h3>
+                    <p>因不可抗力导致的服务中断，我们将在能力范围内提供应急解决方案。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="mailto:ceo@startech7.top" class="footer-link">联系邮箱</a>
+            <a href="javascript:void(0)" onclick="openModal()" class="footer-link">服务协议</a>
+        </div>
+        <p style="color: #7f8c8d; font-size: 0.9rem;">© 2025 奈境星辰 保留所有权利</p>
+    </footer>
+
+    <script>
+        // 自动处理图片加载状态
+        function handleImageLoad() {
+            document.querySelectorAll('img').forEach(img => {
+                const loader = img.parentNode.querySelector('.loading-text')
+                if(img.complete) {
+                    img.classList.add('loaded')
+                    loader.style.display = 'none'
+                }
+            })
+        }
+
+        window.addEventListener('DOMContentLoaded', handleImageLoad)
+        window.addEventListener('load', handleImageLoad)
+
+        // 弹窗控制
+        function openModal() {
+            document.getElementById('termsModal').style.display = 'block'
+        }
+
+        function closeModal() {
+            document.getElementById('termsModal').style.display = 'none'
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('termsModal')
+            if (event.target == modal) {
+                modal.style.display = 'none'
+            }
+        }
+    </script>
+</body>
+</html>
